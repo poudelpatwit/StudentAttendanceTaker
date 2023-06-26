@@ -1,0 +1,81 @@
+body {
+    color: #161748;
+    font-family: 'Andika', sans-serif;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    /* default width for mobile screens */
+    justify-content: center;
+    /* background-color: #f95d9b; */
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+    /* Centers the form horizontally */
+}
+
+/* At medium-sized screens (tablets), increase form width to 60% */
+@media screen and (min-width: 600px) {
+    .auth-form {
+        width: 60%;
+    }
+}
+
+/* At large-sized screens (desktops), increase form width to 30% */
+@media screen and (min-width: 1024px) {
+    .auth-form {
+        width: 30%;
+    }
+}
+
+/* Other styles */
+
+.form-input {
+    width: 100%;
+    margin-bottom: 20px;
+    border-bottom: 1px solid black;
+}
+
+.form-input label {
+    display: block;
+    margin-bottom: 10px;
+    color: var(--color-text-main);
+}
+
+.form-input input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid var(--color-text-main);
+}
+
+.auth-form button {
+    padding: 10px 20px;
+    color: var(--color-text-main);
+    border: none;
+    border-radius: 5px;
+    background-color: var(--color-primary);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.auth-form button:hover {
+    background-color: #b1ead9;
+    /* A lighter shade of the primary color */
+}
+
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 0 20px;
+}
+
+.register-div {
+    margin-top: 10px;
+}
