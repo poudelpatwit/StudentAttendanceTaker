@@ -15,12 +15,12 @@ const fastify = require("fastify")({
 
 const port = 3001;
 
-fastify.listen(port, '0.0.0.0', (err) => {
-  if (err) {
-    fastify.log.error(err);
-    process.exit(1);
-  }
-})
+fastify.listen({ port: port, host: '0.0.0.0' }).then(() => {
+  console.log(`Server listening on http://0.0.0.0:${port}`);
+}).catch(err => {
+  fastify.log.error(err);
+  process.exit(1);
+});
 
 // ADD FAVORITES ARRAY VARIABLE FROM TODO HERE
 
@@ -59,3 +59,10 @@ fastify.get("/", function (request, reply) {
 });
 
 
+//user register route 
+fastify.get("/register", async (request, reply) => {
+  let params = { seo: seo };
+
+  // Send the register page
+  return reply.view("/src/pages/register/register.hbs", params);
+});

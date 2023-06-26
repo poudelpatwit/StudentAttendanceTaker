@@ -35,7 +35,7 @@ body {
 @media screen and (min-width: 1024px) {
     .auth-form {
         width: 90%;
-        height: 50%;
+        height: 80%;
     }
 
     .auth-form button:hover {
