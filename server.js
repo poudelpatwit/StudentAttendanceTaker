@@ -74,4 +74,11 @@ fastify.get('/dashboard', (request, reply) => {
   return reply.view("/src/pages/dashboard/dashboard.hbs", params)
 });
 
+//semester page
+fastify.get('/semester', (request, reply) => {
+  let params = { seo: seo }; // define 'seo' appropriately
+  return reply.view("/src/pages/semester/semester.hbs", params)
+});
+
+
 
