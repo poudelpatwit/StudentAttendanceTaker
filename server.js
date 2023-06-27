@@ -66,3 +66,12 @@ fastify.get("/register", async (request, reply) => {
   // Send the register page
   return reply.view("/src/pages/register/register.hbs", params);
 });
+
+
+//dashboard page
+fastify.get('/dashboard', (request, reply) => {
+  let params = { seo: seo }; // define 'seo' appropriately
+  return reply.view("/src/pages/dashboard/dashboard.hbs", params)
+});
+
+

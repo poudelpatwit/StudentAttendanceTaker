@@ -1,0 +1,128 @@
+@import url('https://unpkg.com/sidebarjs@latest/lib/sidebarjs.min.css');
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    color: white;
+    font-family: 'Andika', sans-serif;
+}
+
+.nav-div {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: -15px;
+    gap: 2%;
+    padding: 0 20px;
+    background-color: #39a0ca;
+    border-radius: 5px;
+}
+
+.user-welcome {
+    color: #161748;
+}
+
+button,
+a {
+    color: #fff;
+    background-color: #2196F3;
+    padding: 6px 16px;
+    box-sizing: border-box;
+    line-height: 1.75;
+    font-weight: 500;
+    border-radius: 4px;
+    letter-spacing: 0.02857em;
+    text-transform: uppercase;
+    border: 0;
+    margin: 24px 24px 0px;
+    cursor: pointer;
+    display: inline-flex;
+    vertical-align: middle;
+    justify-content: center;
+    text-decoration: none;
+    outline: none;
+    position: relative;
+    align-items: center;
+    user-select: none;
+}
+
+a:hover {
+    background-color: #39a0ca;
+}
+
+nav {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Main Content Styles */
+.content {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+/* Cards Styles */
+.card {
+    border: 1px solid #f95d9b;
+    border-radius: 15px;
+    width: 300px;
+    margin: 10px;
+    padding: 20px;
+    text-align: center;
+}
+
+.card h2 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.card p {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.hamburger-icon {
+    width: 30px;
+    height: 3px;
+    background-color: white;
+    position: relative;
+    cursor: pointer;
+}
+
+.hamburger-icon::before,
+.hamburger-icon::after {
+    content: "";
+    height: 3px;
+    background-color: white;
+    position: absolute;
+    left: 0;
+    right: 0;
+    transition: 0.3s;
+}
+
+.hamburger-icon::before {
+    top: -10px;
+}
+
+.hamburger-icon::after {
+    top: 10px;
+}
+
+/* Mobile Styles */
+@media screen and (max-width: 768px) {
+    .nav-div {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .content,
+    .card {
+        width: 100%;
+        margin: 5px;
+    }
+
+    button,
+    a {
+        padding: 12px 24px;
+    }
+}

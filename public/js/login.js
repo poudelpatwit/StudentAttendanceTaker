@@ -1,13 +1,11 @@
-const form = document.getElementById('loginForm');
-
-form.addEventListener('submit', function (event) {
+document.getElementById('loginForm').addEventListener('submit', async (event) => {
     // Prevent the form from being submitted the default way.
     event.preventDefault();
 
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
 
-    fetch('/loginuser', {
+    fetch('https://enormous-oil-speedwell.glitch.me/loginuser', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
