@@ -3,7 +3,7 @@
 body {
     font-family: Arial, sans-serif;
     display: flex;
-    color: white;
+    color: #161748;
     font-family: 'Andika', sans-serif;
 }
 
@@ -16,10 +16,7 @@ body {
     padding: 0 20px;
     background-color: #39a0ca;
     border-radius: 5px;
-}
-
-.user-welcome {
-    color: #161748;
+    color: white;
 }
 
 button,
@@ -61,8 +58,18 @@ nav {
     padding: 20px;
 }
 
-/* Cards Styles */
 .card {
+    display: flex;
+    flex-direction: column;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: 20px;
+}
+
+
+/* Cards Styles */
+.semester-card {
+    display: flex;
+    flex-direction: column;
     border: 1px solid #f95d9b;
     border-radius: 15px;
     width: 300px;
@@ -76,9 +83,17 @@ nav {
     margin-bottom: 20px;
 }
 
+
 .card p {
     color: #666;
     margin-bottom: 20px;
+}
+
+.selectSemester {
+    border: 1px solid #f95d9b;
+    border-radius: 25px;
+    color: #161748;
+    font-size: 1em;
 }
 
 .hamburger-icon {
