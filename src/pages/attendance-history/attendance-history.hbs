@@ -2,10 +2,11 @@
 <html>
 
 <head>
-    <link rel="stylesheet" type="text/css" href="/dashboard.css">
+    <link rel="stylesheet" type="text/css" href="/attendance-history.css">
     <link href="https://fonts.googleapis.com/css2?family=Andika&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/tabulator-tables@5.5.0/dist/css/tabulator.min.css" rel="stylesheet">
 
-    <title>Dashboard</title>
+    <title>Attendance History</title>
 </head>
 
 <body>
@@ -23,24 +24,29 @@
                     <a href="/attendance-report">Attendance Report</a>
                 </nav>
             </div>
-            <h1>Dashboard</h1>
+            <h1>Attendance History</h1>
         </div>
-        <div>
-            <h1 class="user-welcome"> Welcome Praful! </h1>
-        </div>
-
         <div class="container">
-            <div class="card">
-                <h2>Card 1</h2>
-                <p>This is a description for Card 1.</p>
-                <button>Go to Card 1</button>
+            <div class="card" id="attendance-history-table">
             </div>
         </div>
     </div>
 
     <script src="https://unpkg.com/sidebarjs@latest"></script>
+    <script type="text/javascript" src="https://unpkg.com/tabulator-tables@5.5.0/dist/js/tabulator.min.js"></script>
     <script>
         var sidebarjs = new SidebarJS.SidebarElement();
+        var table = new Tabulator("#attendance-history-table", {
+            height: "311px",
+            columns: [
+                { title: "Name", field: "name" },
+                { title: "Progress", field: "progress", sorter: "number" },
+                { title: "Gender", field: "gender" },
+                { title: "Rating", field: "rating" },
+                { title: "Favourite Color", field: "col" },
+                { title: "Date Of Birth", field: "dob", hozAlign: "center" },
+            ],
+        });
     </script>
 </body>
 

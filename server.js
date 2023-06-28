@@ -80,5 +80,30 @@ fastify.get('/semester', (request, reply) => {
   return reply.view("/src/pages/semester/semester.hbs", params)
 });
 
+//course page
+fastify.get('/course', (request, reply) => {
+  let params = { seo: seo }; // define 'seo' appropriately
+  return reply.view("/src/pages/course/semester.hbs", params)
+});
+
+
+//attendance page
+fastify.get('/attendance', (request, reply) => {
+  let params = { seo: seo }; // define 'seo' appropriately
+  return reply.view("/src/pages/attendance/attendance.hbs", params)
+});
+
+//attendance history page
+fastify.get('/attendance-history', (request, reply) => {
+  let params = { seo: seo }; // define 'seo' appropriately
+  return reply.view("/src/pages/attendance-history/attendance-history.hbs", params)
+});
+
+//attendance report page
+fastify.get('/attendance-report', (request, reply) => {
+  let params = { seo: seo }; // define 'seo' appropriately
+  return reply.view("/src/pages/attendance-report/attendance-report.hbs", params)
+});
+
 
 
