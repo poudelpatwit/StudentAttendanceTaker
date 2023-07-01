@@ -12,13 +12,14 @@ document.getElementById('submit-attendance').addEventListener('click', async (ev
     //function to scan the qr code data
     const getQRCode = () => {
         return new Promise((resolve, reject) => {
-            // assuming videoElement is the video where the QR code will be shown
             let videoElement = document.getElementById('qr-video');
+            let stream;
 
             navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } })
-                .then((stream) => {
+                .then((mediaStream) => {
+                    stream = mediaStream;
                     videoElement.srcObject = stream;
-                    videoElement.setAttribute("playsinline", true);
+                    videoElement.setAttribute("playsinline", true); // required to tell iOS safari we don't want fullscreen
                     videoElement.play();
 
                     videoElement.onloadedmetadata = () => {
@@ -27,12 +28,17 @@ document.getElementById('submit-attendance').addEventListener('click', async (ev
                         canvasElement.height = videoElement.videoHeight;
                         let canvas = canvasElement.getContext('2d');
 
-                        setInterval(() => {
+                        const scanInterval = setInterval(() => {
                             canvas.drawImage(videoElement, 0, 0, canvasElement.width, canvasElement.height);
                             let imageData = canvas.getImageData(0, 0, canvasElement.width, canvasElement.height);
                             let code = jsQR(imageData.data, imageData.width, imageData.height);
 
                             if (code) {
+                                clearInterval(scanInterval);
+                                videoElement.pause();
+                                if (stream) {
+                                    stream.getTracks().forEach(track => track.stop());
+                                }
                                 resolve(code.data);
                             }
                         }, 500);
@@ -43,6 +49,7 @@ document.getElementById('submit-attendance').addEventListener('click', async (ev
                 });
         });
     }
+
 
 
 
