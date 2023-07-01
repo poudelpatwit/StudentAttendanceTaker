@@ -35,9 +35,9 @@ document.getElementById('submit-attendance').addEventListener('click', async (ev
 
                             if (code) {
                                 clearInterval(scanInterval);
-                                videoElement.pause();
+                                videoElement.pause();  // Pause the video feed
                                 if (stream) {
-                                    stream.getTracks().forEach(track => track.stop());
+                                    stream.getTracks().forEach(track => track.stop()); // Stop the camera
                                 }
                                 resolve(code.data);
                             }
