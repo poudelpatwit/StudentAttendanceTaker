@@ -26,10 +26,10 @@
             </div>
             <h1>Attendance History</h1>
         </div>
-        <div class="container">
-            <div class="card" id="attendance-history-table">
-            </div>
+        <div class="container"></div>
+        <div class="card" id="attendance-history-table">
         </div>
+    </div>
     </div>
 
     <script src="https://unpkg.com/sidebarjs@latest"></script>
@@ -37,7 +37,6 @@
     <script>
         var sidebarjs = new SidebarJS.SidebarElement();
         var table = new Tabulator("#attendance-history-table", {
-            height: "311px",
             columns: [
                 { title: "Name", field: "name" },
                 { title: "Progress", field: "progress", sorter: "number" },
