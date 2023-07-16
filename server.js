@@ -2,6 +2,15 @@
  * This is the main Node.js server script for your project
  * Check out the two endpoints this back-end API provides in fastify.get and fastify.post below
  */
+require('dotenv').config();
+
+let url;
+if (process.env.NODE_ENV === 'production') {
+  url = process.env.PROD_URL;
+} else {
+  url = process.env.DEV_URL;
+}
+
 
 const fs = require("fs");
 const path = require("path");
@@ -21,8 +30,6 @@ fastify.listen({ port: port, host: '0.0.0.0' }).then(() => {
   fastify.log.error(err);
   process.exit(1);
 });
-
-// ADD FAVORITES ARRAY VARIABLE FROM TODO HERE
 
 // Setup our static files
 fastify.register(require("@fastify/static"), {
@@ -45,6 +52,38 @@ const seo = require("./src/seo.json");
 if (seo.url === "glitch-default") {
   seo.url = `https://${process.env.PROJECT_DOMAIN}.glitch.me`;
 }
+
+// Register the fastify-cookie plugin
+fastify.register(require('@fastify/cookie'));
+
+const axios = require('axios');
+
+//decorator to check authentication
+fastify.decorate("authenticate", async (request, reply) => {
+  const token = request.cookies.token;
+  try {
+    const response = await axios.get('https://enormous-oil-speedwell.glitch.me/is-authenticated', {
+      headers: {
+        Cookie: `token=${token}`
+      }
+    });
+
+    // If the user is authenticated, continue processing the request
+    if (response.data.authenticated) {
+      return;
+    }
+
+    // If the user is not authenticated, return an error message and stop processing the request
+    throw new Error('Authentication failed');
+
+  } catch (err) {
+    // If an error occurs, return an error message and stop processing the request
+    reply.status(401).send({ error: 'Authentication failed' });
+    throw new Error('Authentication failed');
+  }
+});
+
+
 
 /**
  * Our home page route
@@ -83,7 +122,7 @@ fastify.get('/semester', (request, reply) => {
 //course page
 fastify.get('/course', (request, reply) => {
   let params = { seo: seo }; // define 'seo' appropriately
-  return reply.view("/src/pages/course/semester.hbs", params)
+  return reply.view("/src/pages/course/course.hbs", params)
 });
 
 
@@ -105,5 +144,11 @@ fastify.get('/attendance-report', (request, reply) => {
   return reply.view("/src/pages/attendance-report/attendance-report.hbs", params)
 });
 
+fastify.get("/logout", { preHandler: fastify.authenticate }, async (request, reply) => {
+  let params = { seo: seo };
+
+  // Send the register page
+  return reply.view("/src/pages/login/login.hbs", params);
+});
 
 

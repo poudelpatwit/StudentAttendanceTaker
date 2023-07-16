@@ -24,21 +24,39 @@
                 </nav>
             </div>
             <h1>Course</h1>
-        </div>
-        <div>
-            <h1 class="user-welcome">Available Courses</h1>
-        </div>
-
-        <div class="container">
-            <div class="card">
-                <h2>Card 1</h2>
-                <p>This is a description for Card 1.</p>
-                <button>Go to Card 1</button>
+            <div class="dropdown">
+                <button class="dropbtn">
+                    <img src="path/to/your/image.png" alt="Praful" class="option-image">
+                </button>
+                <div class="dropdown-content">
+                    <a href="/settings">Settings</a>
+                    <a href="#" id="logout">Logout</a>
+                </div>
             </div>
         </div>
+        {{!-- <div>
+            <h1 class="user-welcome">Courses</h1>
+        </div>
+        <div class="line-div"></div> --}}
+        <h2>Enrolled Courses</h2>
+        <div class="user-courses-list">
+        </div>
+        <div class="line-div"></div>
+        <h2>Available Courses</h2>
+        <div class="other-courses-list">
+        </div>
+
+        {{!-- <div class="container"> --}}
+            <div class="card">
+            </div>
+            {{!--
+        </div> --}}
     </div>
 
     <script src="https://unpkg.com/sidebarjs@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/js/config.js"></script>
+    <script src="/js/course.js"></script>
     <script>
         var sidebarjs = new SidebarJS.SidebarElement();
     </script>

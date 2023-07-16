@@ -11,7 +11,7 @@ document.getElementById('registerForm').addEventListener('submit', async (event)
     // Perform client-side validation if needed
 
     try {
-        const response = await fetch('https://enormous-oil-speedwell.glitch.me/registeruser', {
+        const response = await fetch(`${url}/registeruser`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -27,9 +27,8 @@ document.getElementById('registerForm').addEventListener('submit', async (event)
         });
 
         if (response.ok) {
-            s
             // Registration successful, redirect to the login page
-            window.location.href = '/login';
+            window.location.href = '/';
         } else {
             // Handle registration error
             const errorData = await response.json();

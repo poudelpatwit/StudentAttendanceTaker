@@ -15,29 +15,56 @@
             <div class="icon hamburger-icon" sidebarjs-toggle></div>
             <div sidebarjs>
                 <nav>
-                    <a href="/dashboard">Dashboard</a>
-                    <a href="/semester">Semester</a>
-                    <a href="/course">Courses</a>
-                    <a href="/attendance">Attendance</a>
-                    <a href="/attendance-history">Attendance History</a>
-                    <a href="/attendance-report">Attendance Report</a>
+                    <a href="dashboard">Dashboard</a>
+                    <a href="semester">Semester</a>
+                    <a href="course">Courses</a>
+                    <a href="attendance">Attendance</a>
+                    <a href="attendance-history">Attendance History</a>
+                    <a href="attendance-report">Attendance Report</a>
                 </nav>
             </div>
             <h1>Attendance Report</h1>
-        </div>
-        <div class="container">
-            <div class="card">
-                <h2>Card 1</h2>
-                <p>This is a description for Card 1.</p>
-                <button>Go to Card 1</button>
+            <div class="dropdown">
+                <button class="dropbtn">
+                    <img src="path/to/your/image.png" alt="Praful" class="option-image">
+                </button>
+                <div class="dropdown-content">
+                    <a href="/settings">Settings</a>
+                    <a href="#" id="logout">Logout</a>
+                </div>
             </div>
         </div>
+        <div style="width: 90%;" class="chartBox">
+            <canvas id="classes_attended"></canvas>
+        </div>
+        <div class="chartCard">
+            <div style="width: 40%;" class="chartBox">
+                <canvas id="percent_classes_attended"></canvas>
+            </div>
+            <div style="width: 40%;" class="chartBox">
+                <canvas id="percent_time_classes_attended"></canvas>
+            </div>
+        </div>
+        {{!-- <div id="percent_classes_attended_overlay">
+            <p id="percent_classes_attended_text"></p>
+        </div>
+        <div id="percent_time_classes_attended_overlay">
+            <p id="percent_time_classes_attended_text"></p>
+        </div> --}}
+
     </div>
 
     <script src="https://unpkg.com/sidebarjs@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.3.0/chart.umd.js"
+        integrity="sha512-CMF3tQtjOoOJoOKlsS7/2loJlkyctwzSoDK/S40iAB+MqWSaf50uObGQSk5Ny/gfRhRCjNLvoxuCvdnERU4WGg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="/js/attendance-report.js"></script>
+
     <script>
         var sidebarjs = new SidebarJS.SidebarElement();
     </script>
+
+
 </body>
 
 </html>

@@ -7,25 +7,10 @@ body {
     font-family: 'Andika', sans-serif;
 }
 
-.nav-div {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    margin-top: -15px;
-    gap: 2%;
-    padding: 0 20px;
-    background-color: #39a0ca;
-    border-radius: 5px;
-}
-
-.user-welcome {
-    color: #161748;
-}
-
-button,
-a {
-    color: #161748;
-    /* background-color: #2196F3; */
+button {
+    font-family: 'Andika', sans-serif;
+    color: #fff;
+    background-color: #2196F3;
     padding: 6px 16px;
     box-sizing: border-box;
     line-height: 1.75;
@@ -33,6 +18,33 @@ a {
     border-radius: 4px;
     letter-spacing: 0.02857em;
     text-transform: uppercase;
+    border: 0;
+    /* margin: 24px 24px 0px; */
+    cursor: pointer;
+    display: inline-flex;
+    vertical-align: middle;
+    justify-content: center;
+    text-decoration: none;
+    outline: none;
+    position: relative;
+    align-items: center;
+    user-select: none;
+}
+
+nav {
+    display: flex;
+    flex-direction: column;
+
+}
+
+a {
+    color: #161748;
+    padding: 6px 16px;
+    box-sizing: border-box;
+    line-height: 1.75;
+    font-weight: 600;
+    border-radius: 4px;
+    letter-spacing: 0.02857em;
     border: 0;
     margin: 24px 24px 0px;
     cursor: pointer;
@@ -50,15 +62,48 @@ a:hover {
     background-color: #39a0ca;
 }
 
-nav {
-    display: flex;
-    flex-direction: column;
+h1 {
+    color: #161748;
+    margin: 0;
 }
+
+select {
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 3px;
+}
+
+
+.line-div {
+    margin-top: 1px;
+    border-top: 3px solid #161748;
+    /* or any color you prefer */
+    width: 100%;
+    height: 0;
+}
+
+.nav-div {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: -15px;
+    gap: 2%;
+    padding: 0 20px;
+    background-color: #39a0ca;
+    border-radius: 5px;
+}
+
+.user-welcome {
+    color: #161748;
+    margin: 5px;
+}
+
 
 /* Main Content Styles */
 .content {
     flex-grow: 1;
     padding: 20px;
+    border-radius: 5px;
 }
 
 /* Cards Styles */
@@ -81,12 +126,12 @@ nav {
     margin-bottom: 20px;
 }
 
+
 .hamburger-icon {
     width: 30px;
     height: 3px;
     background-color: white;
     position: relative;
-    cursor: pointer;
 }
 
 .hamburger-icon::before,
@@ -108,21 +153,75 @@ nav {
     top: 10px;
 }
 
-/* Mobile Styles */
-@media screen and (max-width: 768px) {
-    .nav-div {
-        flex-direction: column;
-        align-items: flex-start;
-    }
+.dropdown {
+    margin-left: auto;
+    position: relative;
+    display: inline-block;
+}
 
-    .content,
-    .card {
-        width: 100%;
-        margin: 5px;
-    }
+.dropbtn {
+    background-color: #39a0ca;
+    padding: 6px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+}
 
-    button,
-    a {
-        padding: 12px 24px;
-    }
+.dropbtn .option-image {
+    max-width: 100%;
+    height: auto;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.select-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    gap: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.semester-select {
+    height: 2.5em;
+    width: 15%;
+    text-align: center;
+    border-radius: 6px;
+}
+
+.course-select {
+    height: 2.5em;
+    width: 15%;
+    text-align: center;
+    border-radius: 6px;
+}
+
+.get-history-button {
+    margin: 0;
+    height: 2.5em;
 }

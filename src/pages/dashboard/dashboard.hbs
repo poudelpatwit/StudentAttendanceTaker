@@ -16,7 +16,7 @@
             <div sidebarjs>
                 <nav>
                     <a href="/dashboard">Dashboard</a>
-                    <a href="/semester">Semester</a>
+                    <a href="#" id="semester">Semester</a>
                     <a href="/course">Courses</a>
                     <a href="/attendance">Attendance</a>
                     <a href="/attendance-history">Attendance History</a>
@@ -31,13 +31,13 @@
                 </button>
                 <div class="dropdown-content">
                     <a href="/settings">Settings</a>
-                    <a href="/logout">Logout</a>
+                    <a href="#" id="logout">Logout</a>
                 </div>
             </div>
 
         </div>
         <div>
-            <h1 class="user-welcome"> Welcome Praful! </h1>
+            <h1 class="user-welcome"></h1>
         </div>
 
         <div class="container">
@@ -50,6 +50,8 @@
     </div>
 
     <script src="https://unpkg.com/sidebarjs@latest"></script>
+    <script src="/js/config.js"></script>
+    <script src="/js/dashboard.js"></script>
     <script>
         var sidebarjs = new SidebarJS.SidebarElement();
     </script>

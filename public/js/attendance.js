@@ -1,6 +1,5 @@
-document.getElementById('submit-attendance').addEventListener('click', async (event) => {
-    // prevent form from submitting normally
-    event.preventDefault();
+
+async function submitAttendance() {
 
     // function to get user's location
     const getLocation = () => {
@@ -50,10 +49,6 @@ document.getElementById('submit-attendance').addEventListener('click', async (ev
         });
     }
 
-
-
-
-
     try {
         // get the location data
         const position = await getLocation();
@@ -86,7 +81,7 @@ document.getElementById('submit-attendance').addEventListener('click', async (ev
         const jsonAttendanceData = JSON.stringify(attendanceData);
 
         // send your data to the server for verification
-        let response = await fetch('https://enormous-oil-speedwell.glitch.me/verify', {
+        let response = await fetch('https://enormous-oil-speedwell.glitch.me/submit-attendance', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -105,8 +100,91 @@ document.getElementById('submit-attendance').addEventListener('click', async (ev
     } catch (error) {
         console.log('There was a problem with the fetch operation: ' + error.message);
     }
+}
+
+
+//fetch all the courses for the user
+async function fetchCourses() {
+    try {
+        const response = await fetch(`${url}/user-courses`, {
+            credentials: 'include'
+        });
+        const data = await response.json();
+        console.log("Courses for a student: ", data);
+
+        if (!response.ok) {
+            console.error('Error:', response.statusText);
+            // Handle error...
+        }
+
+        const courseDropdown = document.querySelector('#courseDropdown');
+        courseDropdown.innerHTML = ''; // clear previous options
+
+        data.forEach((course) => {
+            const courseOption = document.createElement('option');
+            courseOption.value = course.id;
+            courseOption.innerText = course.name;
+            courseDropdown.appendChild(courseOption);
+
+            // If there's only one course, fetch its lectures immediately
+            if (data.length === 1) {
+                fetchLecturesForToday(course.id);
+            }
+        });
+
+
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+
+fetchCourses(); // Call the function here after it is defined.
+
+//get all the lectures for today
+async function fetchLecturesForToday(courseId) {
+    try {
+        const response = await fetch(`${url}/today-lectures-using-user-id`, {
+            method: 'POST',
+            credentials: 'include'
+        });
+        const lecturesData = await response.json();
+        console.log("Lectures for today: ", lecturesData);
+
+        if (!response.ok) {
+            throw new Error('Error:', response.statusText);
+            // Handle error...
+        }
+
+        const lecturesTodayDiv = document.getElementById('lecturesToday');
+        lecturesTodayDiv.innerHTML = '';
+
+        //if lecture data has no entries just show the text saying no lecture today
+        if (lecturesData.length == 0) {
+            lecturesTodayDiv.innerHTML = "<h1> No Lecture found today. <h1>"
+        }
+
+        lecturesData.forEach((lecture) => {
+            const lectureDiv = document.createElement('div');
+            lectureDiv.classList.add("card");
+            lectureDiv.innerHTML = `
+                <h2>${lecture.name}</h2>
+                <p> Start Time: ${lecture.lecture_start_time}</p>
+                <p> End Time: ${lecture.lecture_end_Time}</p>
+                <button id="submit-attendance-${lecture.id}" class="submit-attendance">Submit Attendance</button>
+            `;
+
+            lecturesTodayDiv.appendChild(lectureDiv);
+
+            document.getElementById(`submit-attendance-${lecture.id}`).addEventListener('click', submitAttendance);
+        });
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+
+document.getElementById('courseDropdown').addEventListener('change', function (event) {
+    const courseId = event.target.value;
+
+    // Fetch lectures for today when a course is selected
+    fetchLecturesForToday(courseId);
 });
-
-
-
-

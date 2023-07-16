@@ -23,55 +23,28 @@
                 </nav>
             </div>
             <h1>Semester</h1>
+            <div class="dropdown">
+                <button class="dropbtn">
+                    <img src="path/to/your/image.png" alt="Praful" class="option-image">
+                </button>
+                <div class="dropdown-content">
+                    <a href="/settings">Settings</a>
+                    <a href="#" id="logout">Logout</a>
+                </div>
+            </div>
         </div>
-
         <h2>Available Semesters</h2>
-
+        <div class="line-div"></div>
         <div class="card">
         </div>
     </div>
     <script src="https://unpkg.com/sidebarjs@latest"></script>
     <script>
         var sidebarjs = new SidebarJS.SidebarElement();
-
-        document.body.addEventListener('click', async (event) => {
-            if (event.target.className == 'selectSemester') {
-                const semesterName = event.target.id;
-                localStorage.setItem('semester-name', semesterName);
-                window.location.href = '/course';
-            }
-        });
-
-        async function fetchSemesters() {
-            try {
-                const response = await fetch('https://enormous-oil-speedwell.glitch.me/get-all-semesters');
-                const data = await response.json();
-
-                if (response.ok) {
-                    const semesterList = document.querySelector('.card');
-                    semesterList.innerHTML = '';
-
-                    data.semesters.forEach((semester) => {
-                        const card = document.createElement('div');
-                        card.classList.add('semester-card');
-                        card.innerHTML = `
-                            <h2>${semester.name} ${semester.year}</h2>
-                            <p>Start: ${semester.start}</p>
-                            <p>End: ${semester.end}</p>
-                            <button id="${semester.name}" class="selectSemester">Select</button>
-                            `;
-                        semesterList.appendChild(card);
-                    });
-                } else {
-                    console.error('Error:', response.statusText);
-                }
-            } catch (error) {
-                console.error('Error:', error);
-            }
-        }
-
-        fetchSemesters(); // Call the function here after it is defined.
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/js/config.js"></script>
+    <script src="/js/semester.js"></script>
 </body>
 
 </html>
