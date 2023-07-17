@@ -21,7 +21,8 @@ document.getElementById('loginForm').addEventListener('submit', async (event) =>
                 // Store username in local storage
                 localStorage.setItem('username', username);
                 // Redirect to the dashboard on successful login
-                window.location.href = '/dashboard';
+                // window.location.href = '/dashboard';
+                window.location.href = '/attendance';
             }
         })
         .catch((error) => {
