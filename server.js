@@ -22,7 +22,7 @@ const fastify = require("fastify")({
 });
 // Run the server and report out to the logs
 
-const port = 3001;
+const port = 3000;
 
 fastify.listen({ port: port, host: '0.0.0.0' }).then(() => {
   console.log(`Server listening on http://0.0.0.0:${port}`);
