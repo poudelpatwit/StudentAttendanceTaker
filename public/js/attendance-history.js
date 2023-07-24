@@ -11,6 +11,17 @@ document.addEventListener('DOMContentLoaded', (event) => {
     });
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+    // Get the username from localStorage
+    const username = localStorage.getItem('username');
+
+    // Update the user's welcome message with their username
+    const userElement = document.querySelector('.username');
+    userElement.textContent = `${username}`;
+
+});
+
+
 //logout logic
 document.getElementById('logout').addEventListener('click', function () {
     localStorage.setItem('logout', 1);

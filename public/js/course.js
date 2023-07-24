@@ -1,3 +1,13 @@
+document.addEventListener('DOMContentLoaded', () => {
+    // Get the username from localStorage
+    const username = localStorage.getItem('username');
+
+    // Update the user's welcome message with their username
+    const userElement = document.querySelector('.username');
+    userElement.textContent = `${username}`;
+
+});
+
 document.getElementById('logout').addEventListener('click', function () {
     fetch(`${url}/logout`, {
         method: 'POST',
@@ -61,6 +71,11 @@ async function fetchCourses() {
         console.error('Error:', error);
     }
 }
+
+
+{/* <div class="card-icons">
+<button id="${course.id}-delete" class="semester-icons"><i class="fa fa-trash"></i></button>
+</div> */}
 
 function createCourseCard(course, isSelectable) {
     const courseCard = document.createElement('div');

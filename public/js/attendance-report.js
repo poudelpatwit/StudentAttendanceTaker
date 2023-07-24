@@ -13,6 +13,16 @@ document.getElementById('logout').addEventListener('click', function () {
         });
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+    // Get the username from localStorage
+    const username = localStorage.getItem('username');
+
+    // Update the user's welcome message with their username
+    const userElement = document.querySelector('.username');
+    userElement.textContent = `${username}`;
+
+});
+
 //bar graph of student attendance
 (async function () {
     const data = {

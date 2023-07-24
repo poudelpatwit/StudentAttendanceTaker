@@ -1,5 +1,15 @@
+document.addEventListener('DOMContentLoaded', () => {
+    // Get the username from localStorage
+    const username = localStorage.getItem('username');
 
-async function submitAttendance() {
+    // Update the user's welcome message with their username
+    const userElement = document.querySelector('.username');
+    userElement.textContent = `${username}`;
+
+});
+
+
+async function submitAttendance(lectureId) {
 
     // function to get user's location
     const getLocation = () => {
@@ -74,14 +84,14 @@ async function submitAttendance() {
                 latitude: position.coords.latitude,
                 longitude: position.coords.longitude,
             },
-            qrCodeData: qrCodeData
+            qrCodeData: qrCodeData,
+            id: lectureId
         }
-
 
         const jsonAttendanceData = JSON.stringify(attendanceData);
 
         // send your data to the server for verification
-        let response = await fetch('https://enormous-oil-speedwell.glitch.me/submit-attendance', {
+        let response = await fetch(`${url}/submit-attendance`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -138,10 +148,12 @@ async function fetchCourses() {
     }
 }
 
-fetchCourses(); // Call the function here after it is defined.
+// fetchCourses(); // Call the function here after it is defined.
+
+fetchLecturesForToday();
 
 //get all the lectures for today
-async function fetchLecturesForToday(courseId) {
+async function fetchLecturesForToday() {
     try {
         const response = await fetch(`${url}/today-lectures-using-user-id`, {
             method: 'POST',
@@ -168,23 +180,38 @@ async function fetchLecturesForToday(courseId) {
             lectureDiv.classList.add("card");
             lectureDiv.innerHTML = `
                 <h2>${lecture.name}</h2>
-                <p> Start Time: ${lecture.lecture_start_time}</p>
-                <p> End Time: ${lecture.lecture_end_Time}</p>
+                <p> Start Time: ${convertTo12Hour(lecture.lecture_start_time)}</p>
+                <p> End Time: ${convertTo12Hour(lecture.lecture_end_Time)}</p>
                 <button id="submit-attendance-${lecture.id}" class="submit-attendance">Submit Attendance</button>
             `;
 
             lecturesTodayDiv.appendChild(lectureDiv);
 
-            document.getElementById(`submit-attendance-${lecture.id}`).addEventListener('click', submitAttendance);
+            document.getElementById(`submit-attendance-${lecture.id}`).addEventListener('click', submitAttendance(lecture.id));
         });
     } catch (error) {
         console.error('Error:', error);
     }
 }
 
-document.getElementById('courseDropdown').addEventListener('change', function (event) {
-    const courseId = event.target.value;
+//function that converts 24 hours to 12 hours
+function convertTo12Hour(time) {
+    const [hour, minute] = time.split(':');
 
-    // Fetch lectures for today when a course is selected
-    fetchLecturesForToday(courseId);
-});
+    if (hour === 0) {
+        return `12:${minute} AM`;
+    } else if (hour < 12) {
+        return `${hour.padStart(2, '0')}:${minute} AM`;
+    } else if (hour === 12) {
+        return `12:${minute} PM`;
+    } else {
+        return `${(hour - 12).toString().padStart(2, '0')}:${minute} PM`;
+    }
+}
+
+// document.getElementById('courseDropdown').addEventListener('change', function (event) {
+//     const courseId = event.target.value;
+
+//     // Fetch lectures for today when a course is selected
+//     fetchLecturesForToday(courseId);
+// });

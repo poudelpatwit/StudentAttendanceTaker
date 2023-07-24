@@ -175,6 +175,18 @@ nav {
     display: block;
 }
 
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    font-size: 0.5em;
+    background-color: #39a0ca;
+    color: white;
+    text-align: center;
+    padding: 0 0;
+}
+
 /* Mobile Styles */
 @media screen and (max-width: 768px) {
     .nav-div {

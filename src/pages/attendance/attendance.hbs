@@ -15,18 +15,18 @@
             <div class="icon hamburger-icon" sidebarjs-toggle></div>
             <div sidebarjs>
                 <nav>
-                    <a href="/dashboard">Dashboard</a>
+                    <a href="/attendance">Attendance</a>
                     <a href="/semester">Semester</a>
                     <a href="/course">Courses</a>
-                    <a href="/attendance">Attendance</a>
+                    {{!-- <a href="/attendance">Attendance</a> --}}
                     <a href="/attendance-history">Attendance History</a>
                     <a href="/attendance-report">Attendance Report</a>
                 </nav>
             </div>
-            <h1>Attendance</h1>
+            <h1 class="nav-h1">Attendance</h1>
             <div class="dropdown">
                 <button class="dropbtn">
-                    <img src="path/to/your/image.png" alt="Praful" class="option-image">
+                    <h3 class="username"></h3>
                 </button>
                 <div class="dropdown-content">
                     <a href="/settings">Settings</a>
@@ -39,9 +39,9 @@
         </div>
         <div class="line-div"></div> --}}
 
-        <select id="courseDropdown">
+        {{!-- <select id="courseDropdown">
             <!-- Course options will be added here dynamically -->
-        </select>
+        </select> --}}
 
         <div class="container">
             {{!-- <div class="card">
@@ -51,7 +51,7 @@
             </div> --}}
             <h1>Lectures Today</h1>
             <div class="line-div"></div>
-            <div id="lecturesToday">
+            <div id="lecturesToday" class="lecture-today">
                 <div class="card"></div>
             </div>
         </div>
@@ -60,6 +60,10 @@
     {{!-- <div class="qr-camera-preview" style="width: 300px; height: 200px; position: relative;">
         <video id="qr-video" style="width: 100%; height: 100%; position: absolute;"></video>
     </div> --}}
+
+    <footer class="footer">
+        <p>© 2023 Attendance Taker. All rights reserved.</p>
+    </footer>
 
 
     <script src="https://unpkg.com/sidebarjs@latest"></script>

@@ -19,8 +19,7 @@ body {
     color: white;
 }
 
-button,
-a {
+button {
     color: #161748;
     /* background-color: #2196F3; */
     padding: 6px 16px;
@@ -43,13 +42,77 @@ a {
     user-select: none;
 }
 
+
+a {
+    color: #161748;
+    padding: 6px 16px;
+    box-sizing: border-box;
+    line-height: 1.75;
+    font-weight: 600;
+    border-radius: 4px;
+    letter-spacing: 0.02857em;
+    border: 0;
+    margin: 24px 24px 0px;
+    cursor: pointer;
+    display: inline-flex;
+    vertical-align: middle;
+    justify-content: center;
+    text-decoration: none;
+    outline: none;
+    position: relative;
+    align-items: center;
+    user-select: none;
+}
+
 a:hover {
     background-color: #39a0ca;
+}
+
+
+.username {
+    color: white;
+    text-transform: uppercase;
 }
 
 nav {
     display: flex;
     flex-direction: column;
+}
+
+.other-courses-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.user-courses-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.card-icons {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    gap: 5px;
+}
+
+.card-icon {
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.semester-icons {
+    padding: 3px;
+    background-color: #39a0ca;
+    color: #fff;
+    /* Adding contrast color to the icons */
+    font-size: 16px;
+    /* Increase the size of the icon, adjust according to your need */
+    z-index: 10;
+    right: 0;
+    /* Placing the button on top of the stack */
 }
 
 .line-div {
@@ -83,15 +146,29 @@ nav {
     width: 300px;
     margin: 10px;
     text-align: center;
+    align-items: center;
 }
 
 .course-card p {
-    font-size: 10px;
+    font-size: 0.6em;
 }
 
 .course-card h2 {
     /* font-size: 10px; */
     margin: 5px;
+    font-size: 1em;
+}
+
+.addCourse {
+    border: 1px solid #f95d9b;
+    display: inline-flex;
+    align-items: center;
+    width: 50%;
+    margin-bottom: 5px;
+}
+
+.addCourse:hover {
+    background-color: #39a0ca;
 }
 
 .card h2 {
@@ -190,6 +267,18 @@ nav {
 
 .dropdown:hover .dropdown-content {
     display: block;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    font-size: 0.5em;
+    background-color: #39a0ca;
+    color: white;
+    text-align: center;
+    padding: 0 0;
 }
 
 

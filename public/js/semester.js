@@ -13,6 +13,16 @@ document.getElementById('logout').addEventListener('click', function () {
         });
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+    // Get the username from localStorage
+    const username = localStorage.getItem('username');
+
+    // Update the user's welcome message with their username
+    const userElement = document.querySelector('.username');
+    userElement.textContent = `${username}`;
+
+});
+
 //user will select the semester and then once the semester is selected default semester will be shown.
 async function fetchSemesters() {
     try {
@@ -73,18 +83,24 @@ async function fetchSemesters() {
         // data.semesters.forEach((semester) => {
         const card = document.createElement('div');
         card.classList.add('semester-card');
+
         card.innerHTML = `
+        <div class="card-icons">
+            <button id="${semester.id}-delete" class="semester-icons"><i class="fa fa-trash"></i></button>
+            </div>
                     <h2>${semester.name} ${semester.year}</h2>
                     <p>Start: ${semester.start}</p>
                     <p>End: ${semester.end}</p>`
-        // <button id="${semester.name}" class="selectSemester">Select</button>
-        // `;
+
         semesterList.appendChild(card);
-        // });
-        // }
-        // {
-        //     console.error('Error:', response.statusText);
-        // }
+
+        //add event listener to the delete button
+        document.getElementById(`${semester.id}-delete`).addEventListener('click', function (event) {
+            deleteSemester(event.target.id.split('-')[0]);
+        });
+
+
+
     } catch (error) {
         console.error('Error:', error);
     }
@@ -119,6 +135,52 @@ async function selectSemester(semesterId) {
             //call fetch semesters again after the semester has been added.
             fetchSemesters();
         }
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+
+//function to delete the semester
+async function deleteSemester(semesterId) {
+    try {
+        // Show the confirmation dialog
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'Do you want to delete this semester?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'No, keep it'
+        }).then(async (result) => {
+            // If user clicked on 'Yes, delete it!'
+            if (result.isConfirmed) {
+                // Call the API to delete the semester
+                const response = await fetch(`${url}/delete-student-semester`, {
+                    method: 'DELETE',
+                    credentials: 'include'
+                });
+
+                if (!response.ok) {
+                    // Handle error...
+                    console.error('Error:', response.statusText);
+                } else {
+                    Swal.fire(
+                        'Deleted!',
+                        'The semester has been deleted.',
+                        'success'
+                    );
+
+                    // Update the semester list
+                    fetchSemesters();
+                }
+            } else if (result.dismiss === Swal.DismissReason.cancel) {
+                Swal.fire(
+                    'Cancelled',
+                    'The semester is safe :)',
+                    'error'
+                );
+            }
+        });
     } catch (error) {
         console.error('Error:', error);
     }

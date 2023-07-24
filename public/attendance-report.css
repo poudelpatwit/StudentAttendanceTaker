@@ -195,3 +195,15 @@ a:hover {
 #percent_time_classes_attended_overlay {
     z-index: 2;
 }
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    font-size: 0.5em;
+    background-color: #39a0ca;
+    color: white;
+    text-align: center;
+    padding: 0 0;
+}

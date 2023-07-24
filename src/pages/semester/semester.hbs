@@ -4,6 +4,9 @@
 <head>
     <link rel="stylesheet" type="text/css" href="/semester.css">
     <link href="https://fonts.googleapis.com/css2?family=Andika&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <title>Semester</title>
 </head>
@@ -18,7 +21,7 @@
                     {{!-- <a href="/dashboard">Dashboard</a> --}}
                     <a href="/semester">Semester</a>
                     <a href="/course">Courses</a>
-                    <a href="/attendance">Attendance</a>
+                    {{!-- <a href="/attendance">Attendance</a> --}}
                     <a href="/attendance-history">Attendance History</a>
                     <a href="/attendance-report">Attendance Report</a>
                 </nav>
@@ -26,7 +29,7 @@
             <h1>Semester</h1>
             <div class="dropdown">
                 <button class="dropbtn">
-                    <img src="path/to/your/image.png" alt="Praful" class="option-image">
+                    <h3 class="username"></h3>
                 </button>
                 <div class="dropdown-content">
                     <a href="/settings">Settings</a>
@@ -34,11 +37,16 @@
                 </div>
             </div>
         </div>
-        <h2>Available Semesters</h2>
+        <h2>Semesters</h2>
         <div class="line-div"></div>
         <div class="card">
         </div>
     </div>
+
+    <footer class="footer">
+        <p>© 2023 Attendance Taker. All rights reserved.</p>
+    </footer>
+
     <script src="https://unpkg.com/sidebarjs@latest"></script>
     <script>
         var sidebarjs = new SidebarJS.SidebarElement();

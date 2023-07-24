@@ -106,11 +106,17 @@ select {
     border-radius: 5px;
 }
 
+.lecture-today {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
 /* Cards Styles */
 .card {
     border: 1px solid #f95d9b;
     border-radius: 15px;
-    width: 300px;
+    width: 250px;
     margin: 10px;
     padding: 20px;
     text-align: center;
@@ -119,13 +125,20 @@ select {
 .card h2 {
     color: #333;
     margin-bottom: 20px;
+    font-size: 1em;
 }
 
 .card p {
     color: #666;
     margin-bottom: 20px;
+    font-size: 0.6em;
 }
 
+
+.submit-attendance {
+    width: 50%;
+    font-size: 0.6em;
+}
 
 .hamburger-icon {
     width: 30px;
@@ -224,4 +237,20 @@ select {
 .get-history-button {
     margin: 0;
     height: 2.5em;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    font-size: 0.5em;
+    background-color: #39a0ca;
+    color: white;
+    text-align: center;
+    padding: 0 0;
+}
+
+.nav-h1 {
+    color: white;
 }
