@@ -25,9 +25,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 //user will select the semester and then once the semester is selected default semester will be shown.
 async function fetchSemesters() {
+  const token = localStorage.getItem('token');
     try {
         const response = await fetch(`${url}/get-student-semester`, {
-            credentials: 'include'
+            credentials: 'include',
+            headers: {
+                'Authorization': `Bearer ${token}`
+              }
         });
         const data = await response.json();
         console.log("Student Semester: ", data);
@@ -111,13 +115,15 @@ fetchSemesters(); // Call the function here after it is defined.
 
 //function will add the selected semester by the student
 async function selectSemester(semesterId) {
+  console.log("Semester ID: ", semesterId);
+  const token = localStorage.getItem('token');
     try {
         const response = await fetch(`${url}/add-student-semester-using-id`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`
             },
-            credentials: 'include',
             body: JSON.stringify({ semesterId }),
         });
 

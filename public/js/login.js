@@ -5,7 +5,7 @@ document.getElementById('loginForm').addEventListener('submit', async (event) =>
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
 
-    fetch(`${url}/loginuser`, {
+    fetch(`${url}/loginuser1`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -18,6 +18,7 @@ document.getElementById('loginForm').addEventListener('submit', async (event) =>
             if (data.error) {
                 alert(data.error);
             } else {
+                localStorage.setItem('token', data.token);
                 // Store username in local storage
                 localStorage.setItem('username', username);
                 // Redirect to the dashboard on successful login

@@ -154,10 +154,14 @@ fetchLecturesForToday();
 
 //get all the lectures for today
 async function fetchLecturesForToday() {
+  const token = localStorage.getItem('token');
+  console.log("Token: ", token);
     try {
         const response = await fetch(`${url}/today-lectures-using-user-id`, {
             method: 'POST',
-            credentials: 'include'
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
         });
         const lecturesData = await response.json();
         console.log("Lectures for today: ", lecturesData);
